@@ -1,0 +1,8 @@
+{
+  "name": "Weather Angular",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular",
+  "id": "5f50af8c"
+}
