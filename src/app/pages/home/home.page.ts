@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ApiWeatherService } from 'src/app/services/api-weather.service';
 import { WeatherdataModel } from 'src/app/models/weather-data.model'
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -17,14 +18,36 @@ export class HomePage implements OnInit {
   min_celcius: string;
   max_celcius: string;
 
-  constructor( private weatherService: ApiWeatherService) { }
+  constructor( private weatherService: ApiWeatherService, public toastController: ToastController,) { }
 
   ngOnInit() {    
   }
 
+  async snackNotFoundCity() {
+    const toast = await this.toastController.create({
+      header: '¡No existe la ciudad!',
+      position: 'bottom',
+      message: 'Verifica los datos ingresados  🙏🏻',
+      duration: 2500,
+      color: 'primary'
+    });
+    toast.present();
+  }
+
+  async snackEmptyInput() {
+    const toast = await this.toastController.create({
+      header: '¡No hay datos!',
+      position: 'bottom',
+      message: 'Ingresa un nombre en el campo de búsqueda  📲',
+      duration: 2500,
+      color: 'primary'
+    });
+    toast.present();
+  }
+
   searchCity(form: NgForm){
     if(form.invalid){
-      alert('el formulario no es válido')
+      this.snackEmptyInput();
       return
     }
 
@@ -51,7 +74,7 @@ export class HomePage implements OnInit {
       console.error(error);
 
       if(error.status == 404){
-        alert('La ciudad no existe')
+        this.snackNotFoundCity();
         this.city = ''
         this.weatherModel.city = ''
         return

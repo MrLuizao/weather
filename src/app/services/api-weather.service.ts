@@ -17,4 +17,5 @@ export class ApiWeatherService {
   getDataWeather(city: string){
     return this.http.get(`${this.URI}${city}`) 
   }
+  
 }

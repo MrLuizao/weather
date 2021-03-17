@@ -8,7 +8,6 @@
 
   <div class="pad-1 centered">
     <form  #form="ngForm" (ngSubmit)="searchCity(form)">
-
       <div class="pad-1">
         <ion-input placeholder="Ingresa una ciudad" name="city" required [(ngModel)]="weatherModel.city"></ion-input>   
       </div>
@@ -16,7 +15,6 @@
       <div class="pad-1">
         <ion-button type="submit" color="">Buscar</ion-button>
       </div>
-
     </form>
   </div>
 
@@ -30,18 +28,12 @@
         <div *ngIf="!weatherModel.nowIsDay" class="moon">
           <ion-icon name="moon-outline"></ion-icon>      
         </div>  
-        <!-- <div class="moon">
-          <ion-icon name="moon-outline"></ion-icon>      
-        </div> -->
         <ion-card-title>{{weatherModel.name}}</ion-card-title>
-        <!-- <ion-card-title>Los Angeles</ion-card-title> -->
       </ion-card-header>
   
       <ion-card-content>
         <p class="font-50">{{temp_celcius}}°</p>
-        <!-- <p class="font-50">25°</p> -->
         <p class="font-17" >Min {{min_celcius}}° &nbsp; Max {{max_celcius}}° </p>
-        <!-- <p class="font-25">Min - 16° &nbsp; Max - 34° </p> -->
       </ion-card-content>
     </div>
 
